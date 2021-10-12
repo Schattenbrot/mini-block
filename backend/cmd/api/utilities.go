@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// writeJSON wraps the data in a custom wrapper and writes it to the page.
 func (app *application) writeJSON(w http.ResponseWriter, status int, data interface{}, wrap string) error {
 	wrapper := make(map[string]interface{})
 
@@ -22,6 +23,7 @@ func (app *application) writeJSON(w http.ResponseWriter, status int, data interf
 	return nil
 }
 
+// errorJSON is the wrapper for an error, if one occurs.
 func (app *application) errorJSON(w http.ResponseWriter, err error) {
 	type jsonError struct {
 		Message string `json:"message"`

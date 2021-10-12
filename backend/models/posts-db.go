@@ -15,7 +15,7 @@ type DBModel struct {
 	DB *mongo.Database
 }
 
-func (m *DBModel) PostPost(post Post) (*primitive.ObjectID, error) {
+func (m *DBModel) InsertPost(post Post) (*primitive.ObjectID, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -37,7 +37,7 @@ func (m *DBModel) PostPost(post Post) (*primitive.ObjectID, error) {
 }
 
 // GetOnePost returns one post and error, if any
-func (m *DBModel) GetOnePost(id primitive.ObjectID) (*Post, error) {
+func (m *DBModel) FindOnePost(id primitive.ObjectID) (*Post, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
@@ -55,7 +55,7 @@ func (m *DBModel) GetOnePost(id primitive.ObjectID) (*Post, error) {
 }
 
 // GetAllPosts returns all posts and error, if any
-func (m *DBModel) GetAllPosts() ([]*Post, error) {
+func (m *DBModel) FindAllPosts() ([]*Post, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 

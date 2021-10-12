@@ -162,6 +162,7 @@ Returns the number of deleted posts:
 
 - Payload validation and errors accordingly.
 - Enable paging for getAllPosts (the database is bound to get bigger normally)
+- Add meaningful comments.
 
 ### Frontend
 

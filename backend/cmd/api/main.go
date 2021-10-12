@@ -24,18 +24,14 @@ type config struct {
 	}
 }
 
-type AppStatus struct {
-	Status      string `json:"status"`
-	Environment string `json:"environment"`
-	Version     string `json:"version"`
-}
-
+// application is the type for the applications config.
 type application struct {
 	config config
 	logger *log.Logger
 	models models.Models
 }
 
+// main is the starting point of the application.
 func main() {
 	var cfg config
 
@@ -74,6 +70,7 @@ func main() {
 	}
 }
 
+// openDB creates and returns a new client, or an error if it fails.
 func openDB(cfg config) (*mongo.Client, error) {
 	client, err := mongo.NewClient(options.Client().ApplyURI(cfg.db.dsn))
 	if err != nil {

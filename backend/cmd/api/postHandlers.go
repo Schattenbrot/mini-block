@@ -19,21 +19,26 @@ type PostPayload struct {
 	CreatedAt string `json:"created_at"`
 }
 
-func (app *application) addPost(w http.ResponseWriter, r *http.Request) {
-	var post models.Post
+// createPost is the handler the insertPost method.
+func (app *application) createPost(w http.ResponseWriter, r *http.Request) {
+	var payload PostPayload
 
-	err := json.NewDecoder(r.Body).Decode(&post)
+	err := json.NewDecoder(r.Body).Decode(&payload)
 	if err != nil {
 		app.errorJSON(w, err)
 		return
 	}
+
+	var post models.Post
+	post.Title = payload.Title
+	post.Text = payload.Text
 
 	type jsonResp struct {
 		OK bool   `json:"ok"`
 		ID string `json:"_id"`
 	}
 
-	id, err := app.models.DB.PostPost(post)
+	id, err := app.models.DB.InsertPost(post)
 	if err != nil {
 		app.logger.Println("fuck this failed already")
 		app.errorJSON(w, err)
@@ -52,7 +57,8 @@ func (app *application) addPost(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (app *application) getOnePost(w http.ResponseWriter, r *http.Request) {
+// findOnePost is the handler for the findOnePost method.
+func (app *application) findOnePost(w http.ResponseWriter, r *http.Request) {
 	params := httprouter.ParamsFromContext(r.Context())
 
 	id, err := primitive.ObjectIDFromHex(params.ByName("id"))
@@ -62,7 +68,7 @@ func (app *application) getOnePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	post, err := app.models.DB.GetOnePost(id)
+	post, err := app.models.DB.FindOnePost(id)
 	if err != nil {
 		app.logger.Println(err)
 	}
@@ -73,8 +79,9 @@ func (app *application) getOnePost(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (app *application) getAllPosts(w http.ResponseWriter, r *http.Request) {
-	posts, err := app.models.DB.GetAllPosts()
+// findAllPosts is the handler for the FindAllPosts method.
+func (app *application) findAllPosts(w http.ResponseWriter, r *http.Request) {
+	posts, err := app.models.DB.FindAllPosts()
 	if err != nil {
 		app.logger.Println(err)
 	}
@@ -83,10 +90,10 @@ func (app *application) getAllPosts(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		app.logger.Println(err)
 	}
-
 }
 
-func (app *application) deletePost(w http.ResponseWriter, r *http.Request) {
+// deleteOnePost is the handler for the DeleteOnePost method.
+func (app *application) deleteOnePost(w http.ResponseWriter, r *http.Request) {
 	params := httprouter.ParamsFromContext(r.Context())
 
 	id, err := primitive.ObjectIDFromHex(params.ByName("id"))
