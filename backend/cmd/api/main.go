@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/Schattenbrot/mini-blog/models"
+	"github.com/rs/cors"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -54,9 +55,11 @@ func main() {
 		models: models.NewModels(db),
 	}
 
+	handler := cors.Default().Handler(app.routes())
+
 	serve := &http.Server{
 		Addr:         fmt.Sprintf(":%d", cfg.port),
-		Handler:      app.routes(),
+		Handler:      handler,
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 30 * time.Second,
