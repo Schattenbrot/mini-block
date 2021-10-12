@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mini-blog-api:
+    build: ./backend
+    ports:
+      - '4000:4000'
+    volumes:
+      - './backend:/go/src/app'
+  mini-blog-db:
+    image: mongo
+    ports:
+      - '27017:27017'
