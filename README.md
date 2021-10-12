@@ -62,7 +62,7 @@ Simple CRUD implementation.
 
 > GET /v1/posts[/options]
 
-| Parameter |
+| Parameter | Description                                 |
 | --------- | ------------------------------------------- |
 | `/`       | Returns `all posts`.                        |
 | `/:id`    | Returns a `single post` based on it's `id`. |
