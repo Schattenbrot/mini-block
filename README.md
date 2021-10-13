@@ -185,7 +185,6 @@ Returns the number of deleted posts:
 - Not totally missing anymore but:
 
   - Styles are missing.
-  - centralized fetching (happens all over the place inside of components instead of functions)
   - create useInput component to make it reuseable. (Not needed now ... but great practice)
 
 ### Docker-files
