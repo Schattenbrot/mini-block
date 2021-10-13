@@ -61,7 +61,7 @@ func (m *DBModel) FindAllPosts() ([]*Post, error) {
 	collection := m.DB.Collection("posts")
 
 	findOptions := *options.Find()
-	findOptions.SetSort(bson.D{{"created_at", -1}})
+	findOptions.SetSort(bson.D{{Key: "created_at", Value: -1}})
 
 	cursor, err := collection.Find(ctx, bson.D{}, &findOptions)
 	if err != nil {
