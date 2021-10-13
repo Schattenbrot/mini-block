@@ -185,7 +185,7 @@ Returns the number of deleted posts:
 - Not totally missing anymore but:
 
   - Styles are missing.
-  - create useInput component to make it reuseable. (Not needed now ... but great practice)
+  - Add form validity checking (just the css part) to make it visible if the inputs are wrong/empty.
 
 ### Docker-files
 

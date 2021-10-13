@@ -1,17 +1,26 @@
 import { useState } from 'react';
+import useInput from '../../hooks/use-input';
 
 const CreatePostForm = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
+  const {
+    value: title,
+    hasError: titleHasError,
+    isValid: titleIsValid,
+    changeHandler: titleChangeHandler,
+    resetHandler: titleResetHandler,
+    blurHandler: titleBlurHandler,
+  } = useInput((value) => value.trim() !== '');
+  const {
+    value: text,
+    hasError: textHasError,
+    isValid: textIsValid,
+    changeHandler: textChangeHandler,
+    resetHandler: textResetHandler,
+    blurHandler: textBlurHandler,
+  } = useInput((value) => value.trim() !== '');
 
-  const titleInputHandler = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const textInputHandler = (event) => {
-    setText(event.target.value);
-  };
+  const formIsValid = titleIsValid && textIsValid;
 
   const expandHandler = () => {
     setIsExpanded((prevState) => !prevState);
@@ -19,6 +28,10 @@ const CreatePostForm = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    if (!formIsValid) {
+      return;
+    }
 
     fetch('http://localhost:4000/v1/posts', {
       method: 'POST',
@@ -33,8 +46,8 @@ const CreatePostForm = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.response.ok) {
-          setTitle('');
-          setText('');
+          titleResetHandler();
+          textResetHandler();
 
           alert('success');
         } else {
@@ -62,7 +75,8 @@ const CreatePostForm = () => {
           name='title'
           id='title'
           value={title}
-          onInput={titleInputHandler}
+          onInput={titleChangeHandler}
+          onBlur={titleBlurHandler}
         />
       </div>
       <div>
@@ -72,14 +86,17 @@ const CreatePostForm = () => {
           name='Text'
           id='Text'
           value={text}
-          onInput={textInputHandler}
+          onInput={textChangeHandler}
+          onBlur={textBlurHandler}
         />
       </div>
       <div>
         <button type='button' onClick={expandHandler}>
           Close
         </button>
-        <button type='submit'>Add Post</button>
+        <button type='submit' disabled={!formIsValid}>
+          Add Post
+        </button>
       </div>
     </form>
   );
