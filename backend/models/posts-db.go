@@ -2,7 +2,6 @@ package models
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -19,7 +18,6 @@ func (m *DBModel) InsertPost(post Post) (*primitive.ObjectID, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	fmt.Println(post)
 	currentTime := time.Now().UTC()
 	post.CreatedAt = &currentTime
 	post.UpdatedAt = &currentTime
