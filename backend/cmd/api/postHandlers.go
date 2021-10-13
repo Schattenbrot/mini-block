@@ -40,7 +40,6 @@ func (app *application) createPost(w http.ResponseWriter, r *http.Request) {
 
 	id, err := app.models.DB.InsertPost(post)
 	if err != nil {
-		app.logger.Println("fuck this failed already")
 		app.errorJSON(w, err)
 		return
 	}
