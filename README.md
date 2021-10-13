@@ -1,5 +1,7 @@
 # mini-block
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Just a very simple Blog.
 
 ## Used Stack
@@ -173,3 +175,7 @@ Returns the number of deleted posts:
   - centralized fetching (happens all over the place inside of components instead of functions)
   - Check again for Delete after cors is fixed (in components/home/PostListItem.jsx for some stupid reason)
   - create useInput component to make it reuseable. (Not needed now ... but great practise)
+
+## License
+
+This project is licensed under [MIT](LICENSE).
