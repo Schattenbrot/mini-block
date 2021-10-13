@@ -19,7 +19,7 @@ type PostPayload struct {
 	CreatedAt string `json:"created_at"`
 }
 
-// createPost is the handler the insertPost method.
+// createPost is the handler for the InsertPost method.
 func (app *application) createPost(w http.ResponseWriter, r *http.Request) {
 	var payload PostPayload
 
