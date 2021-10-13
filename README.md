@@ -166,7 +166,9 @@ Returns the number of deleted posts:
 ### Frontend
 
 - The frontend is kinda missing. So needs to be implemented at some point. Will be created in the folder "frontend".
+- Maybe implement time difference for posts that it doesn't show the date but the mins/hours/days from the current time.
 - Not totally missing anymore but:
+
   - Styles are missing.
   - centralized fetching (happens all over the place inside of components instead of functions)
   - Check again for Delete after cors is fixed (in components/home/PostListItem.jsx for some stupid reason)

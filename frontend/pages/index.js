@@ -1,4 +1,7 @@
 import Head from 'next/head';
+
+import { getAllPosts } from '../utils/db-utils';
+
 import CreatePostForm from '../components/home/CreatePostForm';
 import PostList from '../components/home/PostList';
 
@@ -18,9 +21,7 @@ const Home = (props) => {
 };
 
 export const getServerSideProps = async () => {
-  const promise = await fetch('http://localhost:4000/v1/posts');
-  const json = await promise.json();
-  const posts = json.posts;
+  const posts = await getAllPosts();
 
   if (!posts) {
     return {
