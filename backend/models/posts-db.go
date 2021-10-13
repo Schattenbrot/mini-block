@@ -7,6 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // DBModel
@@ -59,7 +60,10 @@ func (m *DBModel) FindAllPosts() ([]*Post, error) {
 
 	collection := m.DB.Collection("posts")
 
-	cursor, err := collection.Find(ctx, bson.M{})
+	findOptions := *options.Find()
+	findOptions.SetSort(bson.D{{"created_at", -1}})
+
+	cursor, err := collection.Find(ctx, bson.D{}, &findOptions)
 	if err != nil {
 		return nil, err
 	}
