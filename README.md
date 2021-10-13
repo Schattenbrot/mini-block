@@ -34,9 +34,11 @@ Very simple:
 
 > git clone https://github.com/Schattenbrot/mini-blog.git
 
-Navigate to the rootfolder:
+Navigate to the root-folder:
 
 > cd mini-blog
+
+### Start backend
 
 Start docker-compose:
 
@@ -45,6 +47,20 @@ Start docker-compose:
 To stop the program (db-data will get saved in the volume "mini-blog_db-data"):
 
 > docker-compose down
+
+## Start frontend
+
+Navigate to the frontend folder:
+
+> cd frontend
+
+Run:
+
+> npm install
+
+When the previous command is finished, run:
+
+> npm run dev
 
 ## Backend API
 
@@ -173,6 +189,11 @@ Returns the number of deleted posts:
   - centralized fetching (happens all over the place inside of components instead of functions)
   - Check again for Delete after cors is fixed (in components/home/PostListItem.jsx for some stupid reason)
   - create useInput component to make it reuseable. (Not needed now ... but great practice)
+
+### Docker-files
+
+- After project is finished adjust the docker-files for building the project for production.
+  - Adjust README "Usage" part accordingly.
 
 ## License
 
