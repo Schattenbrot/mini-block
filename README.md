@@ -174,7 +174,7 @@ Returns the number of deleted posts:
   - Styles are missing.
   - centralized fetching (happens all over the place inside of components instead of functions)
   - Check again for Delete after cors is fixed (in components/home/PostListItem.jsx for some stupid reason)
-  - create useInput component to make it reuseable. (Not needed now ... but great practise)
+  - create useInput component to make it reuseable. (Not needed now ... but great practice)
 
 ## License
 
