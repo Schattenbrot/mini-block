@@ -42,7 +42,7 @@ Start docker-compose:
 
 > docker-compose up
 
-To stop the program (Beware: this will also delete the database-entries):
+To stop the program (db-data will get saved in the volume "mini-blog_db-data"):
 
 > docker-compose down
 
@@ -155,10 +155,6 @@ Returns the number of deleted posts:
     UpdatedAt *time.Time
 
 ## Todo
-
-### Building
-
-- Add database volume to make it persistent. (Fix readme accordingly)
 
 ### Backend
 
