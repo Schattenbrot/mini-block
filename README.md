@@ -163,7 +163,13 @@ Returns the number of deleted posts:
 - Payload validation and errors accordingly.
 - Enable paging for getAllPosts (the database is bound to get bigger normally)
 - Add meaningful comments.
+- Cors handling! (Delete doesn't work with the simplest solution I found, so change that)
 
 ### Frontend
 
 - The frontend is kinda missing. So needs to be implemented at some point. Will be created in the folder "frontend".
+- Not totally missing anymore but:
+  - Styles are missing.
+  - centralized fetching (happens all over the place inside of components instead of functions)
+  - Check again for Delete after cors is fixed (in components/home/PostListItem.jsx for some stupid reason)
+  - create useInput component to make it reuseable. (Not needed now ... but great practise)
