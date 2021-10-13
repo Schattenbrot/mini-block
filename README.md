@@ -177,7 +177,6 @@ Returns the number of deleted posts:
 - Payload validation and errors accordingly.
 - Enable paging for getAllPosts (the database is bound to get bigger normally)
 - Add meaningful comments.
-- Cors handling! (Delete doesn't work with the simplest solution I found, so change that)
 
 ### Frontend
 
@@ -187,7 +186,6 @@ Returns the number of deleted posts:
 
   - Styles are missing.
   - centralized fetching (happens all over the place inside of components instead of functions)
-  - Check again for Delete after cors is fixed (in components/home/PostListItem.jsx for some stupid reason)
   - create useInput component to make it reuseable. (Not needed now ... but great practice)
 
 ### Docker-files

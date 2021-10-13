@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { getOnePost } from '../utils/db-utils';
+import { deletePost, getOnePost } from '../utils/db-utils';
 
 const PostPage = () => {
   const [post, setPost] = useState({});
@@ -9,6 +9,11 @@ const PostPage = () => {
 
   const backHandler = () => {
     router.push('http://localhost:3000/');
+  };
+
+  const deleteHandler = () => {
+    deletePost(_id);
+    router.replace('http://localhost:3000/');
   };
 
   useEffect(() => {
@@ -30,6 +35,7 @@ const PostPage = () => {
 
       <div>
         <button onClick={backHandler}>View All Posts</button>
+        <button onClick={deleteHandler}>Delete</button>
       </div>
     </div>
   );

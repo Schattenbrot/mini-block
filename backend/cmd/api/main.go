@@ -55,7 +55,11 @@ func main() {
 		models: models.NewModels(db),
 	}
 
-	handler := cors.Default().Handler(app.routes())
+	c := cors.New(cors.Options{
+		// AllowedOrigins: []string{"*"},
+		AllowedMethods: []string{"GET", "POST", "DELETE"},
+	})
+	handler := c.Handler(app.routes())
 
 	serve := &http.Server{
 		Addr:         fmt.Sprintf(":%d", cfg.port),
