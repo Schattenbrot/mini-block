@@ -19,6 +19,10 @@ FROM alpine:latest
 
 RUN apk add --no-cache \
         libc6-compat
-WORKDIR /root/
+
+RUN addgroup -S schattenbrot && adduser -S schattenbrot -G schattenbrot
+USER schattenbrot
+
+WORKDIR /run
 COPY --from=builder /go/src/app/app ./
 CMD ["./app"]
